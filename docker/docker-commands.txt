@@ -1,0 +1,27 @@
+docker container run -p 80:80 -d --name mynginex nginx
+
+docker container ls --> will give running containers
+docker container ls -a --> will give both running and stopped container
+
+
+docker rm mynginex -- > remove the conatiner docker ps-a will not show anything after remove
+
+docker stop mynginex -- > stop the running container
+
+docker container top <container name> -- > lost all running process
+docker container stats -- > real time monitoring
+docker container inspect <container name> --> container specification
+
+docker container inspect --format '{{ .NetworkSettings.IPAddress }}' b0abac808166 --> docker container ipaddres
+
+
+docker exec -it centos_ass /bin/bash --> get into running container
+
+docker network create my_app
+
+docker network connect my_app 7f04fddeb9ad (attaching network to container)
+docker exec -it 7f04fddeb9ad ping 16f5ba31d1ea (ping one container from another container of same network)
+
+docker container run --network-alias=elastic-ass -d --name es1 elasticsearch:2
+
+docker container run --network=my_app --network-alias=elastic-ass -d --name es1 elasticsearch:2 --> run a container on network my_app with network alias elastic-ass
